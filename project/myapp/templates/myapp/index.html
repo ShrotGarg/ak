@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .typewriter p {
+            overflow: hidden;
+            border-right: .15em solid rgb(255, 85, 43);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .075em;
+            animation: 
+              typing 6.5s steps(40, end) 7s both, 
+              blink-caret 1s step-end 13s both;  
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: orange; }
+        }
+    </style>
+    <script>
+        function executeScript() {
+            fetch('/execute/')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('output').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 m-5">
+    <div class="typewriter">
+        <p class="text-white text-6xl font-bold text-center font-mono">Welcome to Jarvis</p>
+    </div>
+    <br><br><br>
+    <div class="flex flex-wrap justify-center gap-6">
+        <a class="relative" href="#">
+            <span class="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
+            <span class="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-yellow-400 hover:text-gray-900"
+                  onclick="executeScript()">Try Me!</span>
+        </a>
+    </div>
+    <div id="output" class="text-white text-center mt-4"></div>
+</body>
+</html>
